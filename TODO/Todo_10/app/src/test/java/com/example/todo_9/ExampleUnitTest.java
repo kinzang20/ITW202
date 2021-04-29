@@ -32,15 +32,32 @@ public  void addTwoNumbers(){
     public  void subTwoNumbers() {
         double result = mCalculator.sub(4d, 2d);
         assertThat(result, is(equalTo(2d)));
+
+    }
+    @Test
+    public  void subTwoNumbersnegative() {
+        double result = mCalculator.sub(-4d, 2d);
+        assertThat(result, is(equalTo(-6d)));
+
     }
     @Test
     public  void mulTwoNumbers() {
-        double result = mCalculator.mul(-1d, 2d);
-        assertThat(result, is(equalTo(-2d)));
+        double result = mCalculator.mul(1d, 2d);
+        assertThat(result, is(equalTo(2d)));
+    }
+    @Test
+    public  void mulTwoNumberszero() {
+        double result = mCalculator.mul(1d, 0d);
+        assertThat(result, is(equalTo(0d)));
+    }
+    @Test
+    public  void divTwoNumbersnon() {
+        double result = mCalculator.div(10d, 5d);
+        assertThat(result, is(equalTo(2d)));
     }
     @Test
     public  void divTwoNumbers() {
-        double result = mCalculator.div(10d, 2d);
-        assertThat(result, is(equalTo(5d)));
+        double result = mCalculator.div(10d, 0d);
+        assertThat(result, is(equalTo(Double.POSITIVE_INFINITY)));
     }
 }
