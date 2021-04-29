@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Todo_9</string>
+    <string name="enter_the_second_number">Enter the second number</string>
+    <string name="enter_the_first_number">Enter the First number</string>
+</resources>
