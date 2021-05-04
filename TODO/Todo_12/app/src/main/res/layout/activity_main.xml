@@ -57,12 +57,12 @@
             android:layout_width="170dp"
             android:layout_height="149dp"
             android:padding="30dp"
-            android:onClick="cupcake"
+            android:onClick="ice_cream"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/cupcake" />
+            android:src="@drawable/cupcake"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -86,12 +86,12 @@
             android:layout_width="170dp"
             android:layout_height="149dp"
             android:padding="30dp"
-            android:onClick="eclair"
+            android:onClick="froyo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/eclair" />
+            android:src="@drawable/eclair" />
 
         <TextView
             android:layout_width="match_parent"
@@ -118,7 +118,5 @@
             android:clickable="true"
             app:srcCompat="@android:drawable/sym_action_call" />
     </LinearLayout>
-
-
 
 </LinearLayout>

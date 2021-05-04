@@ -1,6 +1,15 @@
 <resources>
-    <string name="app_name">Todo_12</string>
-    <string name="Cupcake">Cupcake is the first version in android</string>
-    <string name="Donut">Donuts are glazed and sprinkled with candy</string>
-    <string name="eclair">Android Eclair is a codename of the Android mobile operating system developed by Google</string>
+    <string name="app_name" translatable="false">Todo_12</string>
+    <string name="Cupcake" translatable="false">Cupcake is the first version in android</string>
+    <string name="Donut" translatable="false">Donuts are glazed and sprinkled with candy</string>
+    <string name="eclair" translatable="false">Android Eclair is a codename of the Android mobile operating system developed by Google</string>
+    <string name="Name" translatable="false"> Enter Your Name</string>
+    <string name="text" translatable="false">Choose a delivery method</string>
+
+    <string-array name="item_list">
+        <item> Home</item>
+        <item> Work</item>
+        <item> Mobile</item>
+        <item> Other</item>
+    </string-array>
 </resources>

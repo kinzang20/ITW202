@@ -3,7 +3,6 @@ package com.example.todo_12;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,7 +13,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class MainActivity extends AppCompatActivity {
     public static final String LOG = MainActivity.class.getName();
     FloatingActionButton floatingActionButton;
-    String phone = "111-111-111";
+    String list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,28 +23,29 @@ public class MainActivity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Uri url = Uri.parse("tel:"+phone);
-                Intent sentIntent = new Intent(Intent.ACTION_VIEW,url);
-                if(sentIntent.resolveActivity(getPackageManager()) != null){
-                    startActivity(sentIntent);
-                }
-                else{
-                    Log.d(LOG,"Implicit Message Error");
-                }
+                Intent intent = new Intent(getApplicationContext(),OrderActivity.class);
+                intent.putExtra("list", list);
+                startActivity(intent);
             }
         });
     }
 
     public void donut(View view) {
+        String donut = "You ordered a donut";
+        list = donut;
         Toast.makeText(this,"You ordered a donut",Toast.LENGTH_SHORT).show();
     }
 
-    public void cupcake(View view) {
-        Toast.makeText(this,"You ordered cupcake",Toast.LENGTH_SHORT).show();
+    public void ice_cream(View view) {
+        String ice = "You ordered a ice cream";
+        list = ice;
+        Toast.makeText(this,"You ordered a ice cream",Toast.LENGTH_SHORT).show();
     }
 
-    public void eclair(View view) {
-        Toast.makeText(this,"You ordered a eclair",Toast.LENGTH_SHORT).show();
+    public void froyo(View view) {
+        String froyo = "You ordered a froyo";
+        list = froyo;
+        Toast.makeText(this,"You ordered a froyo",Toast.LENGTH_SHORT).show();
     }
 }
 
