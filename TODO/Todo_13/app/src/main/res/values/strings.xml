@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">TODO_12</string>
+    <string name="donut">A doughnut or donut is a type of leavened fried dough. It is popular in many countries and is prepared in various forms as a sweet snack that can be homemade or purchased in bakeries.</string>
+    <string name="ice">An ice cream sandwich is a frozen dessert consisting of ice cream between two biscuits, skins, or cookies.</string>
+    <string name="froyo">Frozen yogurt is a frozen dessert made with yogurt and sometimes other dairy and non-dairy products.</string>
+    <string name="orderdonut">You Ordered a donut</string>
+    <string name="orderice">You ordered a ice cream Sandwich</string>
+    <string name="orderfroyo">You Ordered a Froyo</string>
+    <string name="order_donut_message">You Ordered a Donut</string>
+    <string name="order_ice_message">You ordered a Ice cream</string>
+    <string name="order_froyo_message">You Ordered a Froyo</string>
+    <string name="msg1">Same day messenger service</string>
+    <string name="msg2">Next day ground delivery</string>
+    <string name="msg3">Pick Up</string>
+</resources>
