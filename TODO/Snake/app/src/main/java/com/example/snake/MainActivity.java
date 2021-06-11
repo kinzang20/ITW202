@@ -2,90 +2,99 @@ package com.example.snake;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.SharedPreferences;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
-    public static ImageView img_swipe;
-    public static Dialog dialogScore;
-    private GameView gv;
-    public static TextView txt_score, txt_best_score, txt_dialog_score, txt_dialog_best_score;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    EditText username, password, confirmpassword;
+    Button signup, signin;
+    DBHelper DB;
+    TextView forget;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        DisplayMetrics dm = new DisplayMetrics();
-        this.getWindowManager().getDefaultDisplay().getMetrics(dm);
-        Constants.SCREEN_WIDTH = dm.widthPixels;
-        Constants.SCREEN_HEIGHT = dm.heightPixels;
         setContentView(R.layout.activity_main);
-        img_swipe = findViewById(R.id.img_swipe);
-        gv = findViewById(R.id.gv);
-        txt_score = findViewById(R.id.txt_score);
-        txt_best_score = findViewById(R.id.txt_best_score);
-        dialogScore();
+
+        username = (EditText)findViewById(R.id.username);
+        password = (EditText)findViewById(R.id.password);
+        confirmpassword = (EditText)findViewById(R.id.confirmpassword);
+        forget = (TextView)findViewById(R.id.forget);
+
+        signup = (Button)findViewById(R.id.signupbutton);
+        signin = (Button)findViewById(R.id.signinbutton);
+
+        DB = new DBHelper(this);
+
+        signin.setOnClickListener(this);
+        signup.setOnClickListener(this);
+        forget.setOnClickListener(this);
     }
 
-    private void dialogScore() {
-        int bestScore = 0;
-        SharedPreferences sp = this.getSharedPreferences("gamesetting", Context.MODE_PRIVATE);
-        if(sp!=null){
-            bestScore = sp.getInt("bestscore",0);
+    @Override
+    public void onClick(View v) {
+        switch (v.getId())
+        {
+            case R.id.signupbutton:
+            {
+                String user = username.getText().toString();
+                String pass = password.getText().toString();
+                String confirmpass = confirmpassword.getText().toString();
+                if(user.equals(" ") || pass.equals(" ")||confirmpass.equals(""))
+                {
+                    Toast.makeText(MainActivity.this, "please enter all the fields", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    if(pass.equals(confirmpass))
+                    {
+                        Boolean checkuser = DB.checkusername(user);
+                        if(checkuser==false)
+                        {
+                            Boolean insert = DB.insertesData(user,pass);
+                            if(insert == true)
+                            {
+                                Toast.makeText(MainActivity.this,"Registered Successfully",Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getApplicationContext(), LogInActivity.class);
+                                startActivity(intent);
+                            }
+                            else
+                            {
+                                Toast.makeText(MainActivity.this,"Registration Failed",Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        else
+                        {
+                            Toast.makeText(MainActivity.this,"Registration already exists! please sign in",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    else
+                    {
+                        Toast.makeText(MainActivity.this,"password does not match",Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+            }
+            break;
+            case R.id.signinbutton:
+            {
+                Intent i = new Intent(getApplicationContext(), LogInActivity.class);
+                startActivity(i);
+
+            }
+            break;
+            case R.id.forget:
+            {
+                Intent intent = new Intent(getApplicationContext(), PasswordActivity.class);
+                startActivity(intent);
+            }
+            break;
         }
-        MainActivity.txt_best_score.setText(bestScore+"");
-        dialogScore = new Dialog(this);
-        dialogScore.setContentView(R.layout.dialog_start);
-        txt_dialog_score = dialogScore.findViewById(R.id.txt_dialog_score);
-        txt_dialog_best_score = dialogScore.findViewById(R.id.txt_dialog_best_score);
-        txt_dialog_best_score.setText(bestScore + "");
-        dialogScore.setCanceledOnTouchOutside(false);
-        RelativeLayout rl_start = dialogScore.findViewById(R.id.rl_start);
-        rl_start.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                img_swipe.setVisibility(View.VISIBLE);
-                gv.reset();
-                dialogScore.dismiss();
-            }
-        });
-        dialogScore.show();
 
-        RelativeLayout rl_exit = dialogScore.findViewById(R.id.rl_exit);
-        rl_exit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                confirmDialog();
-            }
-        });
-
-    }
-
-    private void confirmDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Exit?");
-        builder.setMessage("Are you sure?");
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                finish();
-            }
-        });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
-        builder.create().show();
     }
 }

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:background="@drawable/background"
+    tools:context=".ResetActivity">
+    <TextView
+        android:id="@+id/username_reset_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:textSize="20sp"/>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/resetpasswordtoogle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleDrawable="@drawable/icon_selector"
+        android:layout_below="@+id/username_reset_text">
+    <EditText
+        android:id="@+id/resetpassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:hint="password"
+        android:inputType="textPassword"
+        android:layout_below="@+id/username_reset_text"
+        android:layout_marginTop="50dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/confirmresetpasswordtoogle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleDrawable="@drawable/icon_selector"
+        android:layout_below="@+id/resetpasswordtoogle">
+
+    <EditText
+        android:id="@+id/confirmresetpassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="confirm password"
+        android:inputType="textPassword"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:layout_below="@+id/resetpassword"
+        android:layout_marginTop="50dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <Button
+        android:id="@+id/btnconfirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/confirmresetpasswordtoogle"
+        android:text="Confirm"/>
+
+
+</RelativeLayout>

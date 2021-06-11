@@ -132,25 +132,25 @@ public class GameView extends View {
                         my = event.getY();
                         this.snake.setMove_left(true);
                         isPlaying = true;
-                        MainActivity.img_swipe.setVisibility(INVISIBLE);
+                        MainCategory.img_swipe.setVisibility(INVISIBLE);
                     }else if(event.getX() - mx > 100 &&!snake.isMove_left()){
                         mx = event.getX();
                         my = event.getY();
                         this.snake.setMove_right(true);
                         isPlaying = true;
-                        MainActivity.img_swipe.setVisibility(INVISIBLE);
+                        MainCategory.img_swipe.setVisibility(INVISIBLE);
                     }else if(event.getY() - my > 100 && !snake.isMove_up()){
                         mx = event.getX();
                         my = event.getY();
                         this.snake.setMove_down(true);
                         isPlaying = true;
-                        MainActivity.img_swipe.setVisibility(INVISIBLE);
+                        MainCategory.img_swipe.setVisibility(INVISIBLE);
                     }else if(my - event.getY() > 100 && !snake.isMove_down()){
                         mx = event.getX();
                         my = event.getY();
                         this.snake.setMove_up(true);
                         isPlaying = true;
-                        MainActivity.img_swipe.setVisibility(INVISIBLE);
+                        MainCategory.img_swipe.setVisibility(INVISIBLE);
                     }
                 }
                 break;
@@ -194,14 +194,14 @@ public class GameView extends View {
             apple.reset(arrGrass.get(randomApple()[0]).getX(), arrGrass.get(randomApple()[1]).getY());
             snake.addPart();
             score++;
-            MainActivity.txt_score.setText(score+"");
+            MainCategory.txt_score.setText(score+"");
             if(score > bestScore){
                 bestScore = score;
                 SharedPreferences sp = context.getSharedPreferences("gamesetting", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sp.edit();
                 editor.putInt("bestscore", bestScore);
                 editor.apply();
-                MainActivity.txt_best_score.setText(bestScore+"");
+                MainCategory.txt_best_score.setText(bestScore+"");
             }
         }
         handler.postDelayed(r, 100);
@@ -209,9 +209,9 @@ public class GameView extends View {
 
     private void gameOver() {
         isPlaying = false;
-        MainActivity.dialogScore.show();
-        MainActivity.txt_dialog_best_score.setText(bestScore+"");
-        MainActivity.txt_dialog_score.setText(score+"");
+        MainCategory.dialogScore.show();
+        MainCategory.txt_dialog_best_score.setText(bestScore+"");
+        MainCategory.txt_dialog_score.setText(score+"");
         if(loadedsound){
             int streamId = this.soundPool.play(this.soundDie, (float)0.5, (float)0.5, 1, 0, 1f);
         }
